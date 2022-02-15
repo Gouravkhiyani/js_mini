@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
+    <title>Fullscreen API</title>
+</head>
+<body>
+    <h2>Fullscreen API in JS</h2>
+    <img src="1.jpg" id="myImage" alt=""><br>
+    <button onclick="viewPage()">view page in fullscreen</button>
+    <button onclick="viewImage()">view image in fullscreen</button>
+    <script>
+        function viewPage(){
+            var el=document.body;
+            toggleFullscreen(el);
+        }
+        function viewImage(){
+            var el=document.getElementById('myImage');
+            toggleFullscreen(el);
+        }
+
+
+
+
+        function toggleFullscreen(el){
+            if(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullScreenElement || document.msFullScreenElement){
+                if(document.exitFullscreen){
+                    document.exitFullscreen();
+                }
+                else if(document.mozCancelFullscreen){
+                    document.mozCancelFullscreen();
+                }
+                else if(document.webkitExitFullscreen){
+                    document.webkitExitFullscreen();
+                }
+                else if(document.msExitFullscreen){
+                    document.msExitFullscreen();
+                }
+            }
+            else{
+                if(document.documentElement.requestFullscreen){
+                    el.requestFullscreen();
+                }
+                else if(document.documentElement.mozRequestFullScreen){
+                    el.mozRequestFullScreen();
+                }
+                else if(document.documentElement.webkitRequestFullscreen){
+                    el.webkitRequestFullscreen();
+                }
+                else if(document.documentElement.msRequestFullscreen){
+                    el.msRequestFullscreen();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

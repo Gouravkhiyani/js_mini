@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #macScreen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background: url(mac.jpg);
+            width: 799px;
+            height: 609px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #imageContainer {
+            width: 578px;
+            height: 364px;
+            /* background-color: #ccc; */
+            margin: 92px 0px 0px 111px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="macScreen">
+        <div id="imageContainer">
+
+        </div>
+    </div>
+
+    <script>
+        var imageContainer = document.getElementById('imageContainer');
+        var images = ['1.jpg', '2.jpg', '3.jpg'];
+        var totalPics = 3;
+        var currentImage = 0;
+
+        function changeImage() {
+            var imageSource = images[currentImage];
+            currentImage = (currentImage + 1) == totalPics ? 0 : currentImage + 1;
+            imageContainer.innerHTML = '<img src="' + imageSource + '" width=578px height=364px/>';
+            setTimeout(changeImage, 3000);
+        }
+
+        changeImage();
+    </script>
+</body>
+
+</html>

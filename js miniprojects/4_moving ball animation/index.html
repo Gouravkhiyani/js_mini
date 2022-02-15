@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var ball=document.createElement("img");
+        document.body.appendChild(ball);
+        ball.src="fb.png";
+        ball.style.width="60px";
+        ball.style.left="0px";
+        ball.style.top="0px";
+        ball.style.position="absolute";
+
+        var boundX=window.innerWidth;
+        var boundY=window.innerHeight;
+
+        var speed=5;
+        var x=1;
+        var y=1;
+        
+        function screensaver(){
+            var posX=ball.offsetLeft;
+            var posY=ball.offsetTop;
+            
+            if(posX+ball.offsetWidth>boundX || posX<0){
+                x=x*-1;
+            }
+            if(posY+ball.offsetHeight>boundY || posY<0){
+                y=y*-1;
+            }
+
+
+            ball.style.left=ball.x + (speed*x) +'px';
+            ball.style.top=ball.y +(speed*y) +'px';
+
+            setTimeout(screensaver,20);
+        }
+
+        screensaver();
+    </script>
+</body>
+</html>

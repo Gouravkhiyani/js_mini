@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        document.onkeydown=animateKeys;
+
+        var color=['red','black','green','blue','yellow','pink'];
+
+        function animateKeys(events){
+            var keyCode=event.keyCode;
+            // event.which    //for some browsers we need to add this as well to make it work
+
+            var c=String.fromCharCode(keyCode);
+
+            var key=document.createElement("div");
+            document.body.appendChild(key);
+
+            key.style.position="absolute";
+
+            var randX=Math.round(Math.random()* window.innerWidth);
+            var randY=Math.round(Math.random()* window.innerHeight);
+
+            key.style.left=randX+'px';
+            key.style.top=randY+'px';
+
+            key.innerText=c;
+            // key.textContent=c;  // for some browsers 
+
+
+            key.style.transition="all 0.5s linear 0s";
+            key.style.left=key.offsetLeft-30+'px';
+            key.style.top=key.offsetTop-30+'px';
+            key.style.fontSize="100px";
+            key.style.opacity=0;
+            key.style.color=color[Math.round(Math.random()*color.length)];
+
+            var soun=new Audio();
+            soun.src="gun.wav";
+            soun.play();          //some issue in this
+
+
+            //after all this write some code to clean the dom as well otherwise it cause performance issue
+        }
+    </script>
+</body>
+</html>

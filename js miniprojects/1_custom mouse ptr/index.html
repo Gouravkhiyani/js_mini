@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom mouse pointer</title>
+    <style>
+        #container{
+            width: 800px;
+            height: 500px;
+            background: #ccc;
+            border: 4px solid #333;
+            cursor: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="mouse.png" id="customPointer" width="50" style="position: absolute;">
+    </div>
+    <script>
+        var cont=document.getElementById('container');
+        window.onmousemove=applyCustomPointer;
+
+        var customPointer=document.getElementById('customPointer');
+
+        function applyCustomPointer(event){
+            customPointer.style.left=event.clientX-(customPointer.offsetWidth/2)+'px';
+            
+            customPointer.style.top=event.clientY-(customPointer.offsetHeight/2)+'px';
+
+        }
+    </script>
+</body>
+</html>

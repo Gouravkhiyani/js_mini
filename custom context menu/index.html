@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,body{
+            height: 100%;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 10px;
+        }
+        .container{
+            background:#f6f6f6;
+            height: 100%;
+        }
+        .contextMenu{
+            width: 200px;
+            height: auto;
+            box-shadow: 0 0 20px 0 #ccc;
+            position: absolute;
+            display: none;
+        }
+        .contextMenu ul{
+            list-style: none;
+            padding: 5px 0 5px 0;
+        }
+        .contextMenu ul li:not(.separator){
+            padding: 10px 5px 10px 5px;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+        .contextMenu ul li:hover{
+            background: #eee;
+            border-left: 4px solid #666;
+        }
+        .separator{
+            height: 1px;
+            background: #dedede;
+            margin: 2px 0 2px 0;
+
+        }
+    </style>
+    <title>Custom Context right click menu</title>
+</head>
+<body>
+    <div class="container" oncontextmenu="return showContextMenu()">
+        <div class="contextMenu" id="contextMenu">
+            <ul>
+                <li>
+                    Add a event listener
+                </li>
+                <li>
+                    disable default behaviour
+                </li>
+                <li>
+                    design
+                </li>
+                <li>
+                    show the context menu
+                </li>
+                <li class="separator"></li>
+                <li>
+                    hide context menu on mouse click other place
+                </li>
+                <li>
+                    hide on escape key
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        window.onclick=hideContextMenu;
+        window.onkeydown=listenKeys;
+        var contextmenu=document.getElementById('contextMenu');
+        function showContextMenu(){
+            contextmenu.style.display="block";
+            contextmenu.style.left=event.clientX +'px';
+            contextmenu.style.top=event.clientY +'px';
+
+            return false;    // very important as it hides the original context menu provided by browser
+        }
+        function hideContextMenu(){
+            contextmenu.style.display="none";
+        }
+        function listenKeys(event){
+            var keyCode=event.which || event.keyCode;
+            if(keyCode==27)
+                hideContextMenu();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .dlg-container{
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 400px;
+            border: 2px solid red;
+            opacity: 0;
+            transition: all 0.3s linear 0s;
+            z-index: 2;
+        }
+        .dlg-header{
+            padding: 10px;
+            text-align: center;
+        }
+        .dlg-body{
+            padding: 10px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .dlg-footer{
+            text-align: center;
+            padding: 3px 0;
+        }
+        .dlg-footer a{
+            display: inline-block;
+            width: 100px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+        .dlg-footer a:active{
+            box-shadow: inset 2px 2px 4px 0 #ccc;
+        }
+        .freeze-layer{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+    </style>
+    <title>Custom Confirm Dialog Box</title>
+</head>
+<body>
+    <div id="freezelayer" class="freeze-layer" style="display: none;"></div>
+    <button onclick="gotoMyChannel();">Default</button>
+    <button onclick="CustomConfirm.show('hui hui hui',gotoMyChannelCustom);">Custom</button>
+    <div class="dlg-container" id="dialogcont">
+        <div class="dlg-header">custom</div>
+        <div class="dlg-body" id="dlgbody">do you want to continue</div>
+        <div class="dlg-footer">
+            <a onclick="CustomConfirm.okay()">ok</a>
+            <a onclick="CustomConfirm.close()">cancel</a>
+        </div>
+    </div>
+    <script>
+        function gotoMyChannel(){
+            if(confirm('do you want to hui hui hui'))
+            {
+                window.location='https://officialgk.netlify.app';
+            }
+        }
+        function gotoMyChannelCustom(){
+            window.location='https://gkmyteam.netlify.app';
+        }
+        var CustomConfirm=new function(){
+            this.show=function(msg,callback){
+                var dlg=document.getElementById('dialogcont');
+                var dlgbody=dlg.querySelector('#dlgbody');
+                dlg.style.top='30%';
+                dlg.style.opacity=1;
+                dlgbody.textContent=msg;
+                this.callback=callback;
+                document.getElementById('freezelayer').style.display='';
+            }
+            this.okay=function(){
+            this.callback();
+            this.close();
+        };
+        this.close=function(){
+            var dlg=document.getElementById('dialogcont');
+            dlg.style.top='-30%';
+                dlg.style.opacity=0;
+                document.getElementById('freezelayer').style.display='none';
+        };
+        };
+
+        this.okay=function(){
+            this.callback();
+            this.close();
+        };
+        this.close=function(){
+            var dlg=document.getElementById('dialogcont');
+            dlg.style.top='-30%';
+                dlg.style.opacity=0;
+                document.getElementById('freezelayer').style.display='none';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing text animation</title>
+    <style>
+        .display-container{
+            width: 400px;
+            height: 100px;
+            background: #333;
+            border: 4px solid red;
+            color: #f6f6f6;
+            padding: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="display-container" id="display"></div>
+
+    <script>
+        let string="This typing text animation will teach how to create the basic animation in js using html and css. You can place your string data here and see the magic";
+
+        let strArray=string.split("");
+
+        function animate(){
+            if(strArray.length>0){
+                document.getElementById('display').innerHTML +=strArray.shift();      
+                //removes the first item of array and returns array and also changes the length
+            }
+            else{
+                document.getElementById('display').innerHTML='';
+                strArray=string.split("");
+            }
+            setTimeout(animate,20);
+        }
+        animate();
+    </script>
+</body>
+</html>

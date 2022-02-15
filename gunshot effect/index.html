@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunshot</title>
+    <style>
+        .gunshot{
+            position: absolute;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <img src="gse.jpg" id="gunshot" class="gunshot" style="display: none;">
+
+    <script>
+        window.onclick=gunshot;
+
+        function gunshot(event){
+            //1.clone the image element
+            var el=document.getElementById('gunshot').cloneNode();
+            //2.append it to html document
+            document.body.appendChild(el);
+            //3.remove the display none style
+            el.style.display='';
+            //4.show image at the mouse coordinates
+            el.style.left=event.clientX-(el.offsetWidth/2)+'px';        //offset returns width of element in pixels
+            el.style.top=event.clientY-(el.offsetHeight/2)+'px';        //offset returns height of element in pixels
+            //5.sound effect
+            var shotsound=new Audio();
+            shotsound.src="gun.wav";
+            shotsound.play();
+
+        }
+    </script>
+</body>
+</html>

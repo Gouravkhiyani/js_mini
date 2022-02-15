@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyboard controls in js</title>
+</head>
+<body>
+    <img id="object" src="cool.png" width="100" style="position: absolute;"  alt="">
+
+    <script>
+        window.onkeydown=moveObject;
+
+        let left=37;
+        let right=39;
+        let up=38;
+        let down=40;
+
+        var object=document.getElementById('object');
+        var speed=40;
+
+        var deg=0;
+        function moveObject(event){
+            let key=event.keyCode;
+
+            if(event.altKey && key==left){
+                deg-=10;
+                object.style.transform='rotate(' + deg + 'deg)';
+            }
+            else if(event.altKey && key==right)
+            {
+                deg+=10;
+                object.style.transform='rotate('+deg+'deg)';
+            }
+            else if(key==left)
+            object.style.left=object.offsetLeft - speed +'px';
+            else if(key==up)
+            object.style.top=object.offsetTop - speed +'px';
+            else if(key==right)
+            object.style.left=object.offsetLeft + speed +'px';
+            else if(key==down)
+            object.style.top=object.offsetTop + speed +'px';
+
+        }
+    </script>
+</body>
+</html>
